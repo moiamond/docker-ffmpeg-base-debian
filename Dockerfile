@@ -2,18 +2,18 @@ FROM debian:jessie
 MAINTAINER moiamond@gmail.com
 
 
-ENV         FFMPEG_VERSION=3.2.2 \
-            FDKAAC_VERSION=0.1.4 \
-            LAME_VERSION=3.99.5  \
+ENV         FFMPEG_VERSION=3.4 \
+            FDKAAC_VERSION=0.1.5 \
+            LAME_VERSION=3.100  \
             OGG_VERSION=1.3.2    \
-            OPUS_VERSION=1.1.1   \
+            OPUS_VERSION=1.1.4   \
             THEORA_VERSION=1.1.1 \
             YASM_VERSION=1.3.0   \
             VORBIS_VERSION=1.3.5 \
-            VPX_VERSION=1.6.0    \
+            VPX_VERSION=1.6.1    \
             XVID_VERSION=1.3.4   \
-            X265_VERSION=2.0     \
-            X264_VERSION=20160826-2245-stable \
+            X265_VERSION=2.5     \
+            X264_VERSION=20171022-2245-stable \
             PKG_CONFIG_PATH=/usr/local/lib/pkgconfig \
             SRC=/usr/local
 
@@ -92,7 +92,7 @@ RUN         buildDeps="autoconf \
             rm -rf ${DIR} && \
             DIR=$(mktemp -d) && cd ${DIR} && \
 ## libvpx https://www.webmproject.org/code/
-            curl -sL https://codeload.github.com/webmproject/libvpx/tar.gz/v${VPX_VERSION} | \
+            curl -sL https://github.com/webmproject/libvpx/archive/${VPX_VERSION}.tar.gz | \
             tar -zx --strip-components=1 && \
             ./configure --prefix="${SRC}" --enable-vp8 --enable-vp9 --enable-pic --disable-debug --disable-examples --disable-docs --disable-install-bins --enable-shared && \
             make && \
